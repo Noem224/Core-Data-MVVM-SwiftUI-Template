@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 extension ContentView {
-    
     final class ContentViewModel: ObservableObject {
         
         @Published private var dataManager: DataManager
