@@ -14,9 +14,11 @@ class DataManager: NSObject, ObservableObject {
     @Published var projects = [Project]()
     
     private var managedObjectContext: NSManagedObjectContext
+    
     private var projectsFRC: NSFetchedResultsController<Project>
     
     private override init() {
+        
         let persistenceController = PersistenceController()
         managedObjectContext = persistenceController.context
         
@@ -63,7 +65,7 @@ class DataManager: NSObject, ObservableObject {
         }
     }
 }
-
+///Whenever our DataManager's projectsFRC gets updated, we want to update our DataManager's projects array
 extension DataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let newProjects = controller.fetchedObjects as? [Project] {
