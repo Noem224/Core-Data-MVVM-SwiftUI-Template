@@ -65,6 +65,8 @@ class DataManager: NSObject, ObservableObject {
         }
     }
 }
+    //MARK: - NSFetchedResultsControllerDelegate
+
 ///Whenever our DataManager's projectsFRC gets updated, we want to update our DataManager's projects array
 extension DataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
