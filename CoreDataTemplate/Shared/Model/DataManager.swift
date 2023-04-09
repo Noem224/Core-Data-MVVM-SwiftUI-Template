@@ -48,15 +48,15 @@ class DataManager: NSObject, ObservableObject {
     }
     
     //MARK: - Project Handling
-    
+    ///Creating a new project and saving it to the database
     func createNewProject() {
         let newProject = Project(context: managedObjectContext)
         newProject.id = UUID()
         newProject.date = Date()
         newProject.title = "ExampleProject"
-        
         saveData()
     }
+    ///Deleting a project at a specific index
     func deleteProject(at offsets: IndexSet) {
         for i in offsets {
             let projectToDelete = projects[i]

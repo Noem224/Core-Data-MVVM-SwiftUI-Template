@@ -11,21 +11,24 @@ import Combine
 extension ContentView {
     final class ContentViewModel: ObservableObject {
         
+        //MARK: - Properties
         @Published private var dataManager: DataManager
+        
+        ///anyCancellable is used to hold the subscription to the objectWillChange publisher of the dataManager
+        var anyCancellable: AnyCancellable?
         
         var projects: [Project] {
             dataManager.projects
         }
-        
+        //MARK: - Initializers
+        ///initializes the viewModel with the shared instance of the dataManager and subscriping to the objectWillChange publisher which is used to notify the view about changes in the dataManager
         init(dataManager: DataManager = .shared) {
             self.dataManager = dataManager
             anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
                 self?.objectWillChange.send()
             }
         }
-        
-        var anyCancellable: AnyCancellable?
-        
+        //MARK: - Methods
         func createNewProject() {
             dataManager.createNewProject()
         }
